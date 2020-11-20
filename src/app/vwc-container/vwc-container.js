@@ -52,16 +52,18 @@ class VwcContainer extends LitElement {
 
   render() {
     return html`
-      <div
-        class=${classMap({
-          row: true,
-          column: this.column,
-          reverse: this.reverse,
-          ...this.mapStylesFromProps('xs'),
-          ...this.mapStylesFromProps('lg')
-        })}
-      >
-        <slot></slot>
+      <div class="container">
+        <div
+          class=${classMap({
+            row: true,
+            column: this.column,
+            reverse: this.reverse,
+            ...this.mapStylesFromProps('xs'),
+            ...this.mapStylesFromProps('lg')
+          })}
+        >
+          <slot></slot>
+        </div>
       </div>
     `;
   }
