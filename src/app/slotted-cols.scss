@@ -1,0 +1,29 @@
+@use './app.scss';
+
+@mixin baseColStyle {
+  box-sizing: border-box;
+  padding-right: 0.5rem;
+  padding-left: 0.5rem;
+}
+
+@for $i from 1 through 12 {
+  ::slotted([col~='xs-#{$i}']) {
+    @include baseColStyle();
+    @extend .col-xs-#{$i};
+  }
+
+  ::slotted([col~='sm-#{$i}']) {
+    @include baseColStyle();
+    @extend .col-sm-#{$i};
+  }
+
+  ::slotted([col~='md-#{$i}']) {
+    @include baseColStyle();
+    @extend .col-md-#{$i};
+  }
+
+  ::slotted([col~='lg-#{$i}']) {
+    @include baseColStyle();
+    @extend .col-lg-#{$i};
+  }
+}
