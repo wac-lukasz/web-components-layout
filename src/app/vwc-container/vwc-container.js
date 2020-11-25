@@ -11,22 +11,22 @@ class VwcContainer extends LitElement {
   static get properties() {
     return {
       column: {
-        type: Boolean
+        type: Boolean,
       },
       reverse: {
-        type: Boolean
+        type: Boolean,
       },
       xs: {
-        type: Array
+        type: Array,
       },
       sm: {
-        type: Array
+        type: Array,
       },
       md: {
-        type: Array
+        type: Array,
       },
       lg: {
-        type: Array
+        type: Array,
       },
     };
   }
@@ -34,36 +34,36 @@ class VwcContainer extends LitElement {
   mapStylesFromProps(resolution) {
     if (this[resolution]) {
       let styles = {};
-      this[resolution].forEach(prop => {
+      this[resolution].forEach((prop) => {
         styles[`${prop}-${resolution}`] = true;
       });
       return styles;
     }
-    return {}
+    return {};
   }
 
-  alignItems() {
-    return this.align ? `${this.align}` : 'top-xs';
-  }
+  applyStylesFromProps() {
+    const resolutions = ['xs', 'sm', 'md', 'lg'];
+    let stylesFromProps = {};
 
-  justifyContent() {
-    return this.justify ? `${this.justify}` : 'start-xs';
+    resolutions.forEach((res) => {
+      stylesFromProps = {... stylesFromProps, ...this.mapStylesFromProps(res)}
+    })
+
+    return stylesFromProps;
   }
 
   render() {
     return html`
-      <div class="container">
-        <div
-          class=${classMap({
-            row: true,
-            column: this.column,
-            reverse: this.reverse,
-            ...this.mapStylesFromProps('xs'),
-            ...this.mapStylesFromProps('lg')
-          })}
-        >
-          <slot></slot>
-        </div>
+      <div
+        class=${classMap({
+          row: true,
+          column: this.column,
+          reverse: this.reverse,
+          ...this.applyStylesFromProps()
+        })}
+      >
+        <slot></slot>
       </div>
     `;
   }
