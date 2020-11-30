@@ -9,7 +9,7 @@ class MyApp extends LitElement {
   render() {
     return html`
       <div class="main-container">
-        <vwc-container .xs=${['middle', 'center']}>
+        <vwc-layout .xs=${['middle', 'center']}>
           <div col="xs-12">
             <p>Base Grid system</p>
           </div>
@@ -20,9 +20,9 @@ class MyApp extends LitElement {
           <div class="two" col="xs-8">
             <p>Col 8</p>
           </div>
-        </vwc-container>
+        </vwc-layout>
 
-        <vwc-container .xs=${['bottom', 'end']}>
+        <vwc-layout .xs=${['bottom', 'end']}>
           <div col="xs-12">
             <p>Align bottom, Justify End</p>
           </div>
@@ -33,29 +33,29 @@ class MyApp extends LitElement {
           <div class="two" col="xs-5">
             <p>Col 5</p>
           </div>
-        </vwc-container>
+        </vwc-layout>
 
-        <vwc-container .xs=${['bottom', 'start']}>
+        <vwc-layout .xs=${['bottom', 'start']}>
           <div col="xs-12">
             <p>Align center, Justify start, Nested, Reversed</p>
           </div>
 
           <div class="darkorange" col="xs-8">
-            <vwc-container reverse .xs=${['center', 'middle']}>
+            <vwc-layout reverse .xs=${['center', 'middle']}>
               <div class="two" col="xs-4">
                 <p>Col 4</p>
               </div>
               <div class="purple" col="xs-2">
                 <p>Col 2</p>
               </div>
-            </vwc-container>
+            </vwc-layout>
           </div>
           <div class="two" col="xs-5">
             <p>Col 5</p>
           </div>
-        </vwc-container>
+        </vwc-layout>
 
-        <vwc-container column .xs=${['center', 'middle']}>
+        <vwc-layout direction="column" .xs=${['center', 'middle']}>
           <div col="xs-12">
             <p>Column</p>
           </div>
@@ -66,7 +66,7 @@ class MyApp extends LitElement {
           <div class="two" col="xs-5">
             <p>Col 5</p>
           </div>
-        </vwc-container>
+        </vwc-layout>
       </div>
     `;
   }

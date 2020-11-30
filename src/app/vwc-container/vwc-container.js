@@ -3,15 +3,15 @@ import { classMap } from 'lit-html/directives/class-map';
 
 import slotted from '../slotted-cols.scss';
 
-class VwcContainer extends LitElement {
+class VwcLayout extends LitElement {
   static get styles() {
     return [slotted];
   }
 
   static get properties() {
     return {
-      column: {
-        type: Boolean,
+      direction: {
+        type: String,
       },
       reverse: {
         type: Boolean,
@@ -47,20 +47,27 @@ class VwcContainer extends LitElement {
     let stylesFromProps = {};
 
     resolutions.forEach((res) => {
-      stylesFromProps = {... stylesFromProps, ...this.mapStylesFromProps(res)}
-    })
+      stylesFromProps = { ...stylesFromProps, ...this.mapStylesFromProps(res) };
+    });
 
     return stylesFromProps;
+  }
+
+  getFlexDirection() {
+    if (!this.direction) {
+      return { row: true };
+    }
+
+    return this.direction === 'row' ? { row: true } : { column: true };
   }
 
   render() {
     return html`
       <div
         class=${classMap({
-          row: true,
-          column: this.column,
           reverse: this.reverse,
-          ...this.applyStylesFromProps()
+          ...this.applyStylesFromProps(),
+          ...this.getFlexDirection()
         })}
       >
         <slot></slot>
@@ -69,4 +76,4 @@ class VwcContainer extends LitElement {
   }
 }
 
-customElements.define('vwc-container', VwcContainer);
+customElements.define('vwc-layout', VwcLayout);
